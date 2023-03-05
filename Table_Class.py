@@ -157,11 +157,13 @@ class Table():
         self.cell_colours = []  # Erase current list
         smallest = float('inf') # Declare outside of loop for memory purposes
         smallest_index = self.cols
+        smallest_indexes = []   # Declare a list to keep track of the case where there could be many "cheapest" prices
         for i in range(self.rows):
             temp_row_colours = []           # Create a temp row colour list to append colours to before converting to a tuple
             smallest = 9999999              # Reset smallest number
             smallest_index = self.cols + 10 # Set smallest index to be > than cols so after done computing row, 
                                             # if it's still bigger than # of cols, there weren't any numbers in the row
+            smallest_indexes = []           # Reset list of smallest indexes
             for j in range(self.cols):
                 temp_row_colours.append(CELL_COLOUR)    # Set to default colour
                 try:
@@ -173,15 +175,18 @@ class Table():
                     # print(f"Found that {temp_num} < {smallest}, setting index to {smallest_index}")   # DEBUG
                     smallest = temp_num
                     smallest_index = j
+                    smallest_indexes = [j]
+                elif temp_num == smallest:
+                    smallest_indexes.append(j)
 
 
             if smallest_index <= self.cols: # Since default smallest_index is > than cols, see if it found a small number thats not a string
-                temp_row_colours[smallest_index] = "lawn green" # Set smallest value to green
+                for z in range(len(smallest_indexes)):  # check if multiple smallest values
+                    temp_row_colours[smallest_indexes[z]] = "lawn green" # Set smallest value to green
                 
             temp_tuple = tuple(temp_row_colours)    # Convert temp row colour list to a tuple
             self.cell_colours.append(temp_tuple)    # Append the tuple to self.cell_colours buffer
             
-
 
     def visualizeTable(self):
         """

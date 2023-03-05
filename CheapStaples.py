@@ -53,12 +53,12 @@ def main():
 
 
     ##################### TESTING #####################
-    test_input = [("", "Winco", "Walmart"), ("Milk", "4.95", "6.07"), ("Eggs", "5.43", "3.49"), ("Bacon", "1.99", "2.09")]
-    test_table = Table(test_input)
+    test_table_input = [("", "Winco", "Walmart"), ("Milk", "4.95", "6.07"), ("Eggs", "5.43", "3.49"), ("Bacon", "1.99", "1.99")]
+    test_table = Table(test_table_input)
     
     #--#--# this code will hopefully be moved into another file, but sits here whilst testing (or file isn't made yet ;-;)
     test_table.calcCellColours()
-    # print(test_table)
+    print(test_table)
     test_table.visualizeTable()
 
 
