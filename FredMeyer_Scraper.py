@@ -83,14 +83,45 @@ food_list = [
 
 
 def merge(list1, list2):
+    """
+    Desc:
+        Takes every element of two lists, put them in a tuple, and return a list of tuples
+
+        Example:
+            Input:
+                list1 = ['a', 'b', 'c']
+                list2 = [1, 2, 3]
+            Output:
+                merged_list = [('a', 1), ('b', 2), ('c', 3)]
+
+    Parameters:
+        list1   (list)  - A list
+        list2   (list)  - A list
+
+    Return:
+        merged_list (List[Tuples])  - List of tuples on length 2
+    """
     merged_list = [(list1[i], list2[i]) for i in range(0, len(list1))]
     return merged_list
 
 
 def scrape():
+    """
+    Desc:
+        Scrapes global link_list and food_list for food prices, then
+        sorts the prices into a list of tuples and returns that list.
+
+    Parameters:
+        None
+        
+    Returns:
+        food_price_list (List[Tuples]) - List of food and prices in tuples in ("food", "price") format    
+    """
+    # Init lists
     price_res = []
     food_res = []
 
+    # Selenium Scraper Options
     options = Options()
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--headless")

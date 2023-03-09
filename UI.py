@@ -76,7 +76,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("Cheap Meals")
-        self.geometry("1200x800")
+        self.geometry("800x600")
         self.grid_rowconfigure(0, weight=1)
         self.columnconfigure(2, weight=1)
 

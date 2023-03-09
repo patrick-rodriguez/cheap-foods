@@ -20,6 +20,7 @@ def main():
     # Install Scraping Libraries
     os.system("pip install bs4")
     os.system("pip install selenium")
+    os.system("pip install time")
 
     # Install Database Libraries
 
