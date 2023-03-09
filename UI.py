@@ -1,11 +1,12 @@
 import customtkinter
 import tkinter
 
+
 staples = ["Milk (1gal)", 
             "Eggs",
             "Bread (White or wheat)",
             "Staples",
-            "Butter"
+            "Butter",
             "Ketchup",
             "Mustard",
             "Mayo",
@@ -24,15 +25,15 @@ staples = ["Milk (1gal)",
             "Bacon",
             "Baking Powder",
             "Baking Soda",
-            "Vanilla (extract)",
-            "Sugar (white granulated)",
-            "Flour (prob just enriched)",
+            "Vanilla",
+            "Sugar (White Granulated)",
+            "Flour (Enriched)",
             "Olive Oil",
             "Salt",
             "Pepper",
             "Oats",
             "Tomatoes",
-            "Peanutes",
+            "Peanuts",
             "Ice cream (vanilla)",
 ]
 

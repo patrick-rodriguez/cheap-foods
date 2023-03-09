@@ -128,7 +128,7 @@ class Table():
         if cell_width != -1:    # if cell width specified, apply cell width
             self.cell_width = cell_width
 
-        if cell_colour != -1:   # if cell width specified, apply cell width
+        if cell_colour != -1:   # if cell colour specified, apply cell colour
             self.cell_colour = cell_colour
 
 
