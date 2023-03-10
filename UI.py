@@ -1,5 +1,6 @@
 import customtkinter
 import tkinter
+import Table_Class
 
 
 staples = ["Milk (1gal)", 
@@ -65,18 +66,13 @@ class ScrollableCheckBoxFrame(customtkinter.CTkScrollableFrame):
     def get_checked_items(self):
         return [checkbox.cget("text") for checkbox in self.checkbox_list if checkbox.get() == 1]
 
-# class ExecuteButtons(customtkinter.CTkFrame):
-#     def __init__(self):
-#         super().__init__()
-
-
 
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
         self.title("Cheap Meals")
-        self.geometry("800x600")
+        self.geometry("300x800")
         self.grid_rowconfigure(0, weight=1)
         self.columnconfigure(2, weight=1)
 
@@ -84,23 +80,59 @@ class App(customtkinter.CTk):
         self.scrollable_checkbox_frame = ScrollableCheckBoxFrame(master=self, width=220, command=self.checkbox_frame_event,
                                                                  item_list=staples)
         # padx moves frame to the right, pady adds padding to the top AND bottom
-        self.scrollable_checkbox_frame.grid(row=0, column=0, padx=15, pady=15, sticky="ns")
-        
+        self.scrollable_checkbox_frame.grid(row=0, column=0, padx=15, pady=(15, 10), sticky="ns")
 
-        # self.view_all_button = customtkinter.CTkButton(master=self, text="View All")
-        # self.view_all_button.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER,)
+       #######################################################################################################################################
 
-        # self.view_select_button = customtkinter.CTkButton(master=self, text="View Select")
-        # self.view_select_button.place(relx=0.5, rely=0.5)
+        # Frame for Execution Buttons
+        self.buttons_frame = customtkinter.CTkFrame(master=self, width=200)
+        self.buttons_frame.grid(row=1, column=0, padx=15)
+
+        # View all Button
+        view_all_button = customtkinter.CTkButton(master=self.buttons_frame, text="View All", width=15, command=self.view_all_button_clicked)
+        view_all_button.pack(padx=5, pady=10, side="left")
+
+        # View select Button
+        view_select_button = customtkinter.CTkButton(master=self.buttons_frame, text="View Select", width=15, command=self.view_select_button_clicked)
+        view_select_button.pack(padx=5, pady=10, side="left")
+
+        # Update Prices Button
+        update_prices_button = customtkinter.CTkButton(master=self.buttons_frame, text="Update Prices", width=15, command=self.update_prices_clicked)
+        update_prices_button.pack(padx=5, pady=10, side="right")
+
+        #######################################################################################################################################
+
+        # This frame is not in use at the moment, im looking for way to embed the table window into the master frame with the checkbox but for now,
+        # we have a working visualizer
+        self.table_frame = customtkinter.CTkScrollableFrame(master=self, width=900, height=500, bg_color="blue")
+    
 
     def checkbox_frame_event(self):
+        """ Function for debugging purposes """
         print(f"checkbox frame modified: {self.scrollable_checkbox_frame.get_checked_items()}")
     
-    def button_function(self):
-            print("view all was pressed")
+    def view_all_button_clicked(self):
+        print("view all was pressed")   # this is where database call happens for view all
 
+    def view_select_button_clicked(self):
+        if len(self.scrollable_checkbox_frame.get_checked_items()) == 0:
+            print("You must select at least one item for view select.")
+        else:
+            print("view select was pressed")   # this is where database call to retrieve prices happens
+            # these are temp dummy values
+            selected_staples = [("", "Winco", "Walmart"), ("Milk", "4.95", "6.07"), ("Eggs", "5.43", "3.49"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"),
+                ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"),
+                ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"),
+                ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"),
+                ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07"), ("Milk", "4.95", "6.07")]
+            table = Table_Class.Table(selected_staples)
+            table.setTableFormat()
+            table.calcCellColours()
+            table.visualizeTable()
 
-    
+    def update_prices_clicked(self):
+        print("refreshing price database")    # this is where call happens to refresh database prices
+            
 
 if __name__ == "__main__":
     customtkinter.set_appearance_mode("light")
