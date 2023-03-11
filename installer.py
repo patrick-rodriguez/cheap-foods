@@ -10,6 +10,7 @@ def main():
         customtkinter
         bs4 (Beautiful Soup 4)
         selenium
+        time
 
     
     """

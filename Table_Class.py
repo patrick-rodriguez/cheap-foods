@@ -45,7 +45,7 @@ class Table():
         setTableFormat()-   Adjust the style of the table: Font, Font Size, Cell Width, & Cell Colour
         calcCellColours() - Updates self.cell_colours : Goes through the data, and compares prices on each row,
                                 will assign the cell w/ cheapest price a green background colour
-        visualizeTable()-   Display the table on a seperate screen
+        visualizeTable()-   Display the table on a seperate window
         
     """
 
