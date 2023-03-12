@@ -2,11 +2,10 @@
 WebScraper for FredMeyer site
 Author: Garrett Bunkers
 
-TIME: Takes about 20 minutes to run(trying to fix atm)
+Description: This program scrapes staple foods from the FredMeyer site using the Selenium webscraper package.
 
 Output:
-length of food_res
-length of price_res
+tuple(food_res, item_res)
 
 """
 
@@ -15,39 +14,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 
-link_list = ['https://www.fredmeyer.com/search?query=eggs&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=milk%201%20gallon&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=butter&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=ketchup&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=mustard&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=mayo&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=apples&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=corn&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=banana&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=sour%20cream&searchType=suggestions',
-             'https://www.fredmeyer.com/search?query=cheese&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=peanut%20butter&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=pinto%20beans&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=black%20beans&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=white%20rice&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=marinara%20saucE&searchType=default_search'
-             'https://www.fredmeyer.com/search?query=spaghetti%20&searchType=default_search'
-             'https://www.fredmeyer.com/search?query=chicken%20breast&searchType=default_search'
-             'https://www.fredmeyer.com/search?query=ground%20beef&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=bacon&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=baking%20soda&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=baking%20powder&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=vanilla%20extract&searchType=suggestions',
-             'https://www.fredmeyer.com/search?query=sugar&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=flour&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=cooking%20oil&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=salt&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=gorund%20pepper&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=oats&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=tomatoes&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=peanuts&searchType=default_search',
-             'https://www.fredmeyer.com/search?query=vanilla%20ice%20cream&searchType=suggestions'
-             ]
+
 food_list = [
     'https://www.fredmeyer.com/p/kroger-extra-large-white-eggs/0001111085429?fulfillment=PICKUP&searchType=default_search',
     'https://www.fredmeyer.com/p/fred-meyer-1-lowfat-milk/0001111041690?fulfillment=PICKUP&searchType=default_search',
@@ -141,11 +108,8 @@ def scrape():
     real_price = 0
     for w in food_list:
         # Get the website using the Chrome webbdriver
-        time.sleep(5)
         browser = webdriver.Chrome(options=options)
-        time.sleep(10)
         browser.get(w)
-        time.sleep(10)
         print("extracting from: " + w)
         # Scrape the food and price
         food = browser.find_element(By.TAG_NAME, "h1")
@@ -163,7 +127,7 @@ def scrape():
             price_res.append(float(price.text.replace("\n", "").replace("about", "").replace("each", "").replace(
                 "discounted from", "").replace('$', "").replace('$', "")))
         food_res.append(food.text)
-        time.sleep(5)
+        time.sleep(3)
         browser.close()
         browser.quit()
 
