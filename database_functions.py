@@ -5,6 +5,7 @@ import Target_Scraper
 import FredMeyer_Scraper
 from Table_Class import Table
 
+
 def clear_date_table():
     con = mysql.connector.connect(
         host='ix-dev.cs.uoregon.edu',
@@ -18,6 +19,7 @@ def clear_date_table():
     cursor.execute("DELETE FROM last_updated")
     con.commit()
     con.close()
+
 
 def update_last_updated():
     con = mysql.connector.connect(
@@ -36,6 +38,7 @@ def update_last_updated():
     con.commit()
     con.close()
 
+
 def get_last_updated():
     con = mysql.connector.connect(
         host='ix-dev.cs.uoregon.edu',
@@ -48,6 +51,8 @@ def get_last_updated():
     cursor = con.cursor()
     cursor.execute("SELECT * FROM last_updated")
     return cursor.fetchall()[0][0]
+
+
 def clear_fredmeyers_table():
     """
     Clears all data in fredmeyers MySQL database table.
@@ -165,7 +170,6 @@ def get_fredmeyers_prices(item: str):
              f"FROM fredmeyers\n"
              f"WHERE item_name LIKE '%{item}%'")
 
-    if item =
     cursor.execute(query)
     data = cursor.fetchall()
     con.close()
@@ -291,14 +295,15 @@ def get_target_prices(item: str):
 
     if item == "Butter":
         query = (f"SELECT *\n"
-                 f"FROM fredmeyers\n"
+                 f"FROM target\n"
                  f"WHERE item_name = 'Butter'")
 
     cursor.execute(query)
     data = cursor.fetchall()
     con.close()
 
-    return data[0][1]
+    return data
+
 
 def update_prices():
     clear_target_table()
@@ -312,6 +317,7 @@ def update_prices():
     mass_insert_fredmeyers_table(fredmeyer_data)
     update_last_updated()
 
+
 def format_and_display(items: list[str]):
     data = [("", "Fred Meyer", "Target")]
     for item in items:
@@ -320,5 +326,3 @@ def format_and_display(items: list[str]):
         data.append((item, fredmeyers_price, target_price))
 
     return Table(data)
-
-FredMeyer_Scraper.scrape()
