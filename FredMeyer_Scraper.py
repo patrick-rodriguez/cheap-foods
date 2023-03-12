@@ -79,6 +79,12 @@ food_list = [
     'https://www.fredmeyer.com/p/mom-s-best-cereals-old-fashioned-oats/0088397815285?fulfillment=PICKUP&searchType=default_search',
     'https://www.fredmeyer.com/p/roma-tomato/0000000004087?fulfillment=PICKUP&searchType=default_search',
     'https://www.fredmeyer.com/p/kroger-salted-with-sea-salt-peanuts/0001111061315?fulfillment=PICKUP&searchType=default_search',
+    'https://www.fredmeyer.com/p/kroger-enriched-white-bread/0001111008485?fulfillment=PICKUP&searchType=default_search',
+    'https://www.fredmeyer.com/p/office-works-mini-standard-stapler-with-staples-blue/0001111038388?fulfillment=PICKUP&searchType=default_search',
+    'https://www.fredmeyer.com/p/kroger-original-cream-cheese/0001111089202?fulfillment=PICKUP&searchType=default_search',
+    'https://www.fredmeyer.com/p/simple-truth-organic-filtered-extra-virgin-olive-oil/0001111001120?fulfillment=PICKUP&searchType=default_search',
+    'https://www.fredmeyer.com/p/kroger-baking-powder/0001111090765?fulfillment=PICKUP&searchType=default_search',
+    'https://www.fredmeyer.com/p/kroger-deluxe-vividly-vanilla-ice-cream/0001111050729?fulfillment=PICKUP&searchType=default_search'
 ]
 
 
