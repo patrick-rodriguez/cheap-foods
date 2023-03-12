@@ -85,6 +85,28 @@ def get_fredmeyers_prices(item: str):
     Used to gather item-price combination to be
     displayed to the user.
     """
+
+    # Edge cases in order to obtain the correct MySQL entries.
+    if item == "Milk (1gal)":
+        item = "Milk"
+    if item == "Butter":
+        item = "Butter Sticks"
+    if item == "Apples":
+        item = "Apple"
+    if item == "Bananas":
+        item = "Banana"
+    if item == "Marinara Sauce":
+        item = "Marinara"
+    if item == "Chicken Breasts":
+        item = "Chicken Breast"
+    if item == "Sugar (White Granulated)":
+        item = "Sugar"
+    if item == "Flour (Enriched)":
+        item = "Flour"
+    if item == "Salt":
+        item = "Iodized Salt"
+
+
     con = mysql.connector.connect(
         host='ix-dev.cs.uoregon.edu',
         port=3820,
