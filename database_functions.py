@@ -134,6 +134,8 @@ def get_fredmeyers_prices(item: str):
     # Edge cases in order to obtain the correct MySQL entries.
     if item == "Milk (1gal)":
         item = "Milk"
+    if item == "Butter":
+        item = "Butter Sticks"
     if item == "Apples":
         item = "Apple"
     if item == "Bananas":
@@ -163,10 +165,7 @@ def get_fredmeyers_prices(item: str):
              f"FROM fredmeyers\n"
              f"WHERE item_name LIKE '%{item}%'")
 
-    if item == "Butter":
-        query = (f"SELECT *\n"
-                 f"FROM fredmeyers\n"
-                 f"WHERE item_name = 'Butter'")
+    if item =
     cursor.execute(query)
     data = cursor.fetchall()
     con.close()
@@ -261,8 +260,6 @@ def get_target_prices(item: str):
     # Edge cases in order to obtain the correct MySQL entries.
     if item == "Milk (1gal)":
         item = "Milk"
-    if item == "Butter":
-        item = "Butter Sticks"
     if item == "Apples":
         item = "Apple"
     if item == "Bananas":
@@ -291,6 +288,11 @@ def get_target_prices(item: str):
     query = (f"SELECT *\n"
              f"FROM target\n"
              f"WHERE item_name LIKE '%{item}%'")
+
+    if item == "Butter":
+        query = (f"SELECT *\n"
+                 f"FROM fredmeyers\n"
+                 f"WHERE item_name = 'Butter'")
 
     cursor.execute(query)
     data = cursor.fetchall()
