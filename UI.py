@@ -72,7 +72,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("Cheap Meals")
-        self.geometry("300x500")
+        self.geometry("320x500")
         self.grid_rowconfigure(0, weight=1)
         self.columnconfigure(2, weight=1)
 
