@@ -134,8 +134,6 @@ def get_fredmeyers_prices(item: str):
     # Edge cases in order to obtain the correct MySQL entries.
     if item == "Milk (1gal)":
         item = "Milk"
-    if item == "Butter":
-        item = "Butter Sticks"
     if item == "Apples":
         item = "Apple"
     if item == "Bananas":
@@ -165,6 +163,10 @@ def get_fredmeyers_prices(item: str):
              f"FROM fredmeyers\n"
              f"WHERE item_name LIKE '%{item}%'")
 
+    if item == "Butter":
+        query = (f"SELECT *\n"
+                 f"FROM fredmeyers\n"
+                 f"WHERE item_name = 'Butter'")
     cursor.execute(query)
     data = cursor.fetchall()
     con.close()
@@ -316,3 +318,5 @@ def format_and_display(items: list[str]):
         data.append((item, fredmeyers_price, target_price))
 
     return Table(data)
+
+FredMeyer_Scraper.scrape()
