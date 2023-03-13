@@ -145,7 +145,7 @@ class App(customtkinter.CTk):
         """
         Function gets called when the user presses "Update Prices" button.
         """
-        database_functions.update_prices()
+        #database_functions.update_prices()
         # Create Popup window
         popup = customtkinter.CTk()
         popup.title("Cheap Meals")
