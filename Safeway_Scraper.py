@@ -97,5 +97,4 @@ def scrape():
 
         staple_food[count][1] = word
         count += 1
-    print(staple_food)
     return staple_food  # Once staple food list is updated with the correct data, return it
