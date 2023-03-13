@@ -1,31 +1,12 @@
-"""
-UI.py       - For CheapStaples Program
-
-
-Desc:
-    Location-Price Interface for CheapStaples.
-        Contains all functios to enable the UI, and events associated
-        with buttons and actions within the UI
-
-Works in conjunction with:
-    database_functions.py
-    CheapStaples.py
-    FredMeyer_Scraper.py
-    Target_Scraper.py
-    Table_Class.py
-"""
-
-
 import customtkinter
 from tkinter import *
 import Table_Class
 import database_functions
 
-# staples is the list of all ingredients supported by Cheap Meals
+# Staples is the list of all ingredients supported by Cheap Meals
 staples = ["Milk (1gal)", 
             "Eggs",
-            # "Bread (White or wheat)",
-            # "Staples",
+            "Bread (White or wheat)",
             "Butter",
             "Ketchup",
             "Mustard",
@@ -33,7 +14,7 @@ staples = ["Milk (1gal)",
             "Apples",
             "Corn",
             "Bananas",
-            # "Cream Cheese",
+            "Cream Cheese",
             "Peanut Butter",
             "Pinto Beans",
             "Black Beans",
@@ -43,18 +24,16 @@ staples = ["Milk (1gal)",
             "Chicken Breasts",
             "Ground Beef",
             "Bacon",
-            # "Baking Powder",
             "Baking Soda",
-            "Vanilla extract",
             "Sugar (White Granulated)",
             "Flour (Enriched)",
-            # "Olive Oil",
+            "Olive Oil",
             "Salt",
             "Pepper",
             "Oats",
             "Tomatoes",
-            "Peanutes"#,
-            # "Ice cream (vanilla)",
+            "Peanuts",
+            "Ice cream",
 ]
 
 
@@ -67,8 +46,6 @@ class ScrollableCheckBoxFrame(customtkinter.CTkScrollableFrame):
         self.checkbox_list = []
         for i, item in enumerate(item_list):
             self.add_item(item)
-        # for item in item_list:
-        #     self.add_item(item)
 
     def add_item(self, item):
         """
@@ -81,16 +58,6 @@ class ScrollableCheckBoxFrame(customtkinter.CTkScrollableFrame):
         checkbox.grid(row=len(self.checkbox_list), column=0, padx=15, pady=10, sticky="w")
         self.checkbox_list.append(checkbox)
 
-    # def remove_item(self, item):
-    #     """
-    #     Function gets called when item is unchecked in checkboxFrame
-    #     """
-    #     for checkbox in self.checkbox_list:
-    #         if item == checkbox.cget("text"):
-    #             checkbox.destroy()
-    #             self.checkbox_list.remove(checkbox)
-    #             return
-
     def get_checked_items(self):
         """
         Returns current checked items in checkbox_list
@@ -102,6 +69,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         # Configure the main window
+        customtkinter.set_appearance_mode("light")
         self.title("Cheap Meals")
         self.geometry("320x800")
         self.grid_rowconfigure(0, weight=1)
@@ -112,6 +80,10 @@ class App(customtkinter.CTk):
                                                                  item_list=staples)
         # Position the checkbox frame
         self.scrollable_checkbox_frame.grid(row=0, column=0, padx=15, pady=(55, 10), sticky="ns")
+
+        # Create and Place "Cheap Meals" Label Title 
+        cheap_meals_label = customtkinter.CTkLabel(master=self, text="Cheap Meals ®", font=("Helvetica", 26, "bold"))
+        cheap_meals_label.place(relx=0.5, rely=0.04,anchor="center")
 
        #######################################################################################################################################
 
@@ -133,10 +105,6 @@ class App(customtkinter.CTk):
         update_prices_button.pack(padx=5, pady=10, side="right")
 
         #######################################################################################################################################
-
-       # Create and Place "Cheap Meals" Label 
-        cheap_meals_label = customtkinter.CTkLabel(master=self, text="Cheap Meals ®", font=("Helvetica", 26, "bold"))
-        cheap_meals_label.place(relx=0.5, rely=0.04,anchor="center")
 
 
     def checkbox_frame_event(self):
@@ -167,7 +135,6 @@ class App(customtkinter.CTk):
             print("You must select at least one item for view select.")
         else:
             selected_staples = self.scrollable_checkbox_frame.get_checked_items()
-            print(selected_staples)
             table = database_functions.format_and_display(selected_staples)  
             table.setTableFormat()
             table.calcCellColours()
@@ -178,8 +145,7 @@ class App(customtkinter.CTk):
         """
         Function gets called when the user presses "Update Prices" button.
         """
-        print("refreshing price database")
-        #database_functions.update_prices()
+        database_functions.update_prices()
         # Create Popup window
         popup = customtkinter.CTk()
         popup.title("Cheap Meals")
@@ -195,9 +161,3 @@ class App(customtkinter.CTk):
         OK_button.pack(pady=5)
         
         popup.mainloop()
-            
-
-if __name__ == "__main__":
-    customtkinter.set_appearance_mode("light")
-    app = App()
-    app.mainloop()
