@@ -14,55 +14,17 @@ Description:
     Run this file to execute the program.
 
 """
-
-from Table_Class import Table
-
+import UI
 
 
 def main():
     """
-    This is the Main function for the program, will call the user
-    
-
-    Variable Types:
-        user_input  -   List of staples to find in database
-        food_table  -   Table from Table_Class
+    This is the Main function for the program, when ran it will call UI.py to construct the App window and
+    all its associated functionally.
     """
-    print("hello world")
+    app = UI.App()
+    app.mainloop()
 
-    ##################### MAIN FUNCTION #####################
-    # Call UI
-    user_input = 0 #getUserInput() # from UI.py
-        # Input: User's input
-        # Output: a list of strings to find ["milk", "eggs", "bacon"]
-
-
-
-    # Give UI Input to Processing & Take Output from Processing
-    food_table = 0 #processData(user_input)
-        # Input: a list of strings to find ["milk", "eggs", "bacon"]
-        # Output: A formatted table ready to visualize
-
-
-
-    # Visualize Data
-    # visualizeTable(food_table)
-        # Input: A formatted table ready to visualize
-        # Output: On screen
-
-
-
-    ##################### TESTING #####################
-    test_table_input = [("", "Winco", "Walmart"), ("Milk", "4.95", "6.07"), ("Eggs", "5.43", "3.49"), ("Bacon", "1.99", "1.99")]
-    test_table = Table(test_table_input)
-    
-    #--#--# this code will hopefully be moved into another file, but sits here whilst testing (or file isn't made yet ;-;)
-    test_table.calcCellColours()
-    print(test_table)
-    test_table.visualizeTable()
-
-
-    #--#--#
 
 if __name__ == "__main__":
     main()
