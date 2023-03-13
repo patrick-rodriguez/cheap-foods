@@ -343,7 +343,7 @@ def update_prices():
     mass_insert_safeway_table(safeway_data)
     update_last_updated()
 
-
+#
 def format_and_display(items: list[str]):
     """
     Takes in a list of staples. First, it will run appropriate functions to retrieve
