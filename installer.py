@@ -8,7 +8,6 @@ def main():
     Installs python libraries:
         customtkinter
         bs4 (Beautiful Soup 4)
-        selenium
         mysql-connector-python
 
     
@@ -19,7 +18,6 @@ def main():
 
     # Install Scraping Libraries
     os.system("pip install bs4")
-    os.system("pip install selenium")
     os.system("pip install requests")
 
     # Install Database Libraries
@@ -32,7 +30,6 @@ def main():
 
     # Install Scraping Libraries
     os.system("pip3 install bs4")
-    os.system("pip3 install selenium")
     os.system("pip3 install requests")
 
     # Install Database Libraries
