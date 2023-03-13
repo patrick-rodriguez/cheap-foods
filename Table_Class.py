@@ -204,7 +204,7 @@ class Table():
             None
         """        
         root = Tk()            # Declare a root
-        root.title("Fred Meyer vs Target") # Set window title
+        root.title("Safeway vs Target") # Set window title
         for i in range(self.rows):  # For each row,
             for j in range(self.cols):  # then each column in the row,
                 self.e = Entry(root, width=self.cell_width, bg=self.cell_colours[i][j], font=(self.font, self.font_size))        # Init an entry      
