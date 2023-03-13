@@ -127,26 +127,6 @@ def mass_insert_safeway_table(items: list):
         price = item_price_tuple[1]
         insert_to_safeway_table(item, price)
 
-"""
-def update_safeway_table(item: str, price: float):
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
-
-    cursor = con.cursor()
-    query = (f"UPDATE safeway\n"
-             f"SET price = {price}\n"
-             f"WHERE item_name = '{item}'")
-
-    cursor.execute(query)
-    con.commit()
-    con.close()
-"""
-
 def get_safeway_prices(item: str):
     """
     Used to gather item-price combination to be
@@ -251,25 +231,6 @@ def mass_insert_target_table(items: list):
         price = item_price_tuple[1]
         insert_to_target_table(item, price)  # Insert entry to MySQL database.
 
-"""
-def update_target_table(item: str, price: float):
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
-
-    cursor = con.cursor()
-    query = (f"UPDATE target\n"
-             f"SET price = {price}\n"
-             f"WHERE item_name = '{item}'")
-
-    cursor.execute(query)
-    con.commit()
-    con.close()
-"""
 
 def get_target_prices(item: str):
     """
