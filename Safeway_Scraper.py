@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-def Target_Scrapper():
+def scrape():
     """
     Desc:
         Scrape Target's website of all items within url_list and return
@@ -99,5 +99,3 @@ def Target_Scrapper():
         count += 1
     print(staple_food)
     return staple_food  # Once staple food list is updated with the correct data, return it
-
-Target_Scrapper()
