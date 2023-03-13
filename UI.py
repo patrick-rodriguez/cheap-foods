@@ -1,3 +1,21 @@
+"""
+UI.py       - For CheapStaples Program
+
+
+Desc:
+    Location-Price Interface for CheapStaples.
+        Contains all functios to enable the UI, and events associated
+        with buttons and actions within the UI
+
+Works in conjunction with:
+    database_functions.py
+    CheapStaples.py
+    FredMeyer_Scraper.py
+    Target_Scraper.py
+    Table_Class.py
+"""
+
+
 import customtkinter
 import tkinter
 import Table_Class

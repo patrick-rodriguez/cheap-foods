@@ -1,9 +1,16 @@
-import mysql.connector
-from datetime import datetime
+"""
+database_functions.py       - for CheapStaples program
 
-import Target_Scraper
-import FredMeyer_Scraper
-from Table_Class import Table
+Contains all functions to access and manipulate the MySQL Database,
+    and format the data from it into a Table class
+
+"""
+import mysql.connector          # MySQL Database connection
+from datetime import datetime   # For timestamping last updated database
+
+import Target_Scraper           # Scraper
+import FredMeyer_Scraper        # Scraper
+from Table_Class import Table   # Table for Data Processing
 
 
 def clear_date_table():
