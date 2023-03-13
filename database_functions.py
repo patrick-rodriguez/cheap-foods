@@ -297,8 +297,6 @@ def get_target_prices(item: str):
         item = "Sugar"
     if item == "Flour (Enriched)":
         item = "Flour"
-    if item == "Vanilla extract":
-        item = "Vanilla"
 
     # Information needed to connect to MySQL database.
     con = mysql.connector.connect(
