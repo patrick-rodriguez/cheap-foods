@@ -491,5 +491,3 @@ def format_and_display(items: list[str]):
         data.append((item, safeway_price, target_price))
 
     return Table(data)
-
-update_prices()
