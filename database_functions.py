@@ -168,8 +168,6 @@ def get_safeway_prices(item: str):
         item = "Sugar"
     if item == "Flour (Enriched)":
         item = "Flour"
-    if item == "Salt":
-        item = "Iodized Salt"
     if item == "Tomatoes":
         item = "Roma Tomato"
 
@@ -343,7 +341,7 @@ def update_prices():
     mass_insert_safeway_table(safeway_data)
     update_last_updated()
 
-#
+
 def format_and_display(items: list[str]):
     """
     Takes in a list of staples. First, it will run appropriate functions to retrieve
