@@ -10,7 +10,7 @@ from tkinter import *
 # Declare some default table format settings
 CELL_WIDTH = 13 # int
 CELL_COLOUR = "white"   # str
-FONT_SIZE = 15  # int
+FONT_SIZE = 12  # int
 FONT = "Arial"  # str
 
     # Colour Winners
