@@ -154,6 +154,8 @@ def get_safeway_prices(item: str):
     """
 
     # Addressing edge cases in order to obtain the correct MySQL entries.
+    if item == "Bread (White or wheat)":
+        item = "Bread"
     if item == "Milk (1gal)":
         item = "Milk"
     if item == "Apples":
