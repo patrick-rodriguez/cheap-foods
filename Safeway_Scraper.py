@@ -1,7 +1,7 @@
 """
 Safeway_Scraper.py   - Part of the CheapStaples program
 Author: Garrett/Daniel
-    Scrapes Target's website for food prices & returns the prices
+    Scrapes Safeway's website for food prices & returns the prices
         in a list of pairs
 
 
@@ -16,7 +16,7 @@ import requests
 def scrape():
     """
     Desc:
-        Scrape Target's website of all items within url_list and return
+        Scrape Safeway's website of all items within url_list and return
             the name, price pairs in a list.
 
         As for Net Weight of the products searched for, uses measurements specified in the file header comment
