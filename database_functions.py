@@ -361,6 +361,3 @@ def format_and_display(items: list[str]):
         data.append((item, safeway_price, target_price))
 
     return Table(data)
-
-print(get_safeway_prices("Bread (White or wheat)"))
-print(get_target_prices("Bread (White or wheat)"))
