@@ -367,3 +367,5 @@ def format_and_display(items: list[str]):
         data.append((item, fredmeyers_price, target_price))
 
     return Table(data)
+
+#
