@@ -326,7 +326,7 @@ def get_target_prices(item: str):
     data = cursor.fetchall()  # Variable contains all necessary data entries.
     con.close()  # Close connection to MySQL database.
 
-    return data
+    return data[0][1]
 
 
 def update_prices():
