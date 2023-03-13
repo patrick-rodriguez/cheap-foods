@@ -168,8 +168,6 @@ def get_safeway_prices(item: str):
         item = "Sugar"
     if item == "Flour (Enriched)":
         item = "Flour"
-    if item == "Tomatoes":
-        item = "Roma Tomato"
 
     # Information needed to connect to MySQL database.
     con = mysql.connector.connect(
