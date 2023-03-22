@@ -37,6 +37,7 @@ def get_mysql_login():
 def create_schema(db):
     """Create the MySQL scheme responsible for holding the individual grocery store tables."""
     cursor = db.cursor()
+    cursor.execute("DROP SCHEMA IF EXISTS Cheap_Staples ;")
     cursor.execute("CREATE SCHEMA `Cheap_Staples` ;")
 
 

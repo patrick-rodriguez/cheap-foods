@@ -10,25 +10,25 @@ import Target_Scraper
 import Safeway_Scraper
 from Table_Class import Table
 
+con = mysql.connector.connect(
+    host='ix-dev.cs.uoregon.edu',
+    port=3042,
+    user='tnadeau',
+    password='testpassword',
+    database='Cheap_Staples'
+)
+
 
 def clear_date_table():
     """
     Clears the MySQL last_updated table.
     Returns: N/A
     """
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
 
     cursor = con.cursor()
     cursor.execute("DELETE FROM last_updated")  # MySQL query responsible for clearing table.
     con.commit()  # Commit MySQL query.
-    con.close()  # Close MySQL connection.
+    
 
 
 def update_last_updated():
@@ -37,14 +37,6 @@ def update_last_updated():
     when the update() function was last ran by a user.
     Returns: N/A
     """
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
 
     cursor = con.cursor()
     unprocessed_date = datetime.today()  # Grab today's date.
@@ -52,44 +44,29 @@ def update_last_updated():
 
     cursor.execute(f"insert into last_updated values ('{dt_string}')")  # MySQL query to update the entry.
     con.commit()  # Commit changes to table.
-    con.close()  # Close MySQL connection.
+    
 
 
 def get_last_updated():
     """
     Returns the date and time when the MySQL database was last updated.
     """
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
 
     cursor = con.cursor()
     cursor.execute("SELECT * FROM last_updated")  # MySQL query responsible for gathering date.
-    return cursor.fetchall()[0][0]  # Returns date and time string.
+    return cursor.fetchall()[0]  # Returns date and time string.
+
+
 def clear_safeway_table():
     """
     Clears all data in safeway MySQL database table.
     To be used when user updates prices.
     Returns: N/A
     """
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
 
     cursor = con.cursor()
     cursor.execute("DELETE FROM safeway")  # MySQL query to clear table.
     con.commit()  # Commit changes to MySQL.
-    con.close()  # Close connection to MySQL database.
 
 
 def insert_to_safeway_table(item: str, price: float):
@@ -99,21 +76,12 @@ def insert_to_safeway_table(item: str, price: float):
     Returns: N/A
     """
 
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
-
     cursor = con.cursor()
 
     query = f"insert into safeway values('{item}', {price})"  # MySQL query that inserts values into database.
     cursor.execute(query)
     con.commit()  # Commit changes to MySQL database
-    con.close()  # Close connection to MySQL
+    # Close connection to MySQL
 
 
 def mass_insert_safeway_table(items: list):
@@ -126,6 +94,7 @@ def mass_insert_safeway_table(items: list):
         item = item_price_tuple[0].replace(r"'", r"\'")  # Addresses edge case of any apostrophes in item_name.
         price = item_price_tuple[1]
         insert_to_safeway_table(item, price)
+
 
 def get_safeway_prices(item: str):
     """
@@ -151,15 +120,6 @@ def get_safeway_prices(item: str):
     if item == "Flour (Enriched)":
         item = "Flour"
 
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
-
     cursor = con.cursor()
 
     # MySQL query responsible for obtaining appropriate information
@@ -169,7 +129,6 @@ def get_safeway_prices(item: str):
 
     cursor.execute(query)
     data = cursor.fetchall()  # Variable that contains appropriate data entries.
-    con.close()  # Close connection to MySQL database.
 
     return data[0][1]
 
@@ -179,19 +138,10 @@ def clear_target_table():
     Clears all data in target MySQL database table.
     To be used when user updates prices.
     """
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
 
     cursor = con.cursor()
     cursor.execute("DELETE FROM target")  # MySQL query to clear target table.
     con.commit()  # Commit changes to MySQL database.
-    con.close()  # Close connection to MySQL database.
 
 
 def insert_to_target_table(item: str, price: float):
@@ -203,21 +153,11 @@ def insert_to_target_table(item: str, price: float):
     if item == "Roma Tomato":
         item = "Roma Tomatoes"
 
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
-
     cursor = con.cursor()
 
-    query = f"insert into target values('{item}', {price})" # MySQL query that inserts values into database.
+    query = f"insert into target values('{item}', {price})"  # MySQL query that inserts values into database.
     cursor.execute(query)
     con.commit()  # Commit changes to MySQL database
-    con.close()  # Close connection to MySQL database.
 
 
 def mass_insert_target_table(items: list):
@@ -227,7 +167,7 @@ def mass_insert_target_table(items: list):
     into the MySQL database table.
     """
     for item_price_tuple in items:
-        item = item_price_tuple[0].replace(r"'", r"\'") # Addresses edge case of any apostrophes in item_name.
+        item = item_price_tuple[0].replace(r"'", r"\'")  # Addresses edge case of any apostrophes in item_name.
         price = item_price_tuple[1]
         insert_to_target_table(item, price)  # Insert entry to MySQL database.
 
@@ -255,15 +195,6 @@ def get_target_prices(item: str):
     if item == "Bread (White or wheat)":
         item = "Bread"
 
-    # Information needed to connect to MySQL database.
-    con = mysql.connector.connect(
-        host='ix-dev.cs.uoregon.edu',
-        port=3820,
-        user='prodrig2',
-        password='irodmario@2001',
-        database='422project2'
-    )
-
     cursor = con.cursor()
 
     # MySQL query to obtain necessary data entries.
@@ -279,7 +210,6 @@ def get_target_prices(item: str):
 
     cursor.execute(query)
     data = cursor.fetchall()  # Variable contains all necessary data entries.
-    con.close()  # Close connection to MySQL database.
 
     return data[0][1]
 
@@ -318,7 +248,11 @@ def format_and_display(items: list[str]):
         safeway_price = get_safeway_prices(item)
         target_price = get_target_prices(item)
 
-        #format prices by (item, price#1, price#2) then append to data list.
+        # format prices by (item, price#1, price#2) then append to data list.
         data.append((item, safeway_price, target_price))
 
     return Table(data)
+
+
+def display_last_updated():
+    return f"Last updated\n{get_last_updated()}"
